@@ -27,6 +27,11 @@ function saveLogs(logs) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(logs));
 }
 
+function parseOptionalNumber(value) {
+  if (value === "") return null;
+  return Number(value);
+}
+
 function summarizeMeal(log) {
   const items = [
     `朝: ${log.breakfast || "-"}`,
@@ -132,8 +137,9 @@ function renderLogs() {
     row.querySelector(".date").textContent = log.date;
     row.querySelector(".meal").textContent = summarizeMeal(log);
     row.querySelector(".memo").textContent = log.conditionMemo || "-";
-    row.querySelector(".counts").textContent = `便通${log.bowelCount} / 尿${log.urineCount}`;
-    row.querySelector(".stool").textContent = log.stoolType;
+    const bowelText = log.bowelCount === null ? "-" : log.bowelCount;
+    row.querySelector(".counts").textContent = `便通${bowelText} / 尿${log.urineCount}`;
+    row.querySelector(".stool").textContent = log.stoolType || "-";
     row.querySelector(".pain").textContent = log.painLevel;
     row.querySelector(".stress").textContent = log.stressLevel;
 
@@ -160,7 +166,7 @@ form.addEventListener("submit", (event) => {
     snack: document.getElementById("snack").value.trim(),
     dinner: document.getElementById("dinner").value.trim(),
     conditionMemo: document.getElementById("conditionMemo").value.trim(),
-    bowelCount: Number(document.getElementById("bowelCount").value),
+    bowelCount: parseOptionalNumber(document.getElementById("bowelCount").value),
     urineCount: Number(document.getElementById("urineCount").value),
     stoolType: document.getElementById("stoolType").value,
     painLevel: Number(painInput.value),
