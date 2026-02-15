@@ -71,13 +71,11 @@
             </label>
             <label>
               腹痛の具合（0〜10）
-              <input type="range" id="painLevel" min="0" max="10" value="0" />
-              <span id="painValue">0</span>
+              <input type="number" id="painLevel" min="0" max="10" value="0" step="1" required />
             </label>
             <label>
               精神的ストレス（0〜10）
-              <input type="range" id="stressLevel" min="0" max="10" value="0" />
-              <span id="stressValue">0</span>
+              <input type="number" id="stressLevel" min="0" max="10" value="0" step="1" required />
             </label>
           </div>
           <button type="submit">記録を保存</button>

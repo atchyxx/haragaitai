@@ -7,17 +7,6 @@ const rowTemplate = document.getElementById("row-template");
 const clearAllButton = document.getElementById("clearAll");
 const painInput = document.getElementById("painLevel");
 const stressInput = document.getElementById("stressLevel");
-const painValue = document.getElementById("painValue");
-const stressValue = document.getElementById("stressValue");
-
-painInput.addEventListener("input", () => {
-  painValue.textContent = painInput.value;
-});
-
-stressInput.addEventListener("input", () => {
-  stressValue.textContent = stressInput.value;
-});
-
 function getLogs() {
   const data = localStorage.getItem(STORAGE_KEY);
   return data ? JSON.parse(data) : [];
@@ -181,8 +170,6 @@ form.addEventListener("submit", (event) => {
   document.getElementById("date").valueAsDate = new Date();
   painInput.value = "0";
   stressInput.value = "0";
-  painValue.textContent = "0";
-  stressValue.textContent = "0";
   renderLogs();
 });
 
