@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>おなかケア記録アプリ</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="hero">
+        <div>
+          <h1>おなかケア記録アプリ</h1>
+          <p>毎日の食事・体調・ストレスを記録して、腹痛との関係を見える化します。</p>
+        </div>
+        <div class="mascot" aria-hidden="true">
+          <svg viewBox="0 0 120 120" role="img">
+            <circle cx="60" cy="60" r="54" fill="#fff5f8" />
+            <ellipse cx="60" cy="66" rx="32" ry="26" fill="#ffd6e3" />
+            <circle cx="48" cy="58" r="4" fill="#5b6678" />
+            <circle cx="72" cy="58" r="4" fill="#5b6678" />
+            <path d="M48 74 Q60 84 72 74" fill="none" stroke="#5b6678" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="40" cy="70" r="5" fill="#ffb3c8" />
+            <circle cx="80" cy="70" r="5" fill="#ffb3c8" />
+            <path d="M22 36 C30 22, 42 26, 45 38" fill="none" stroke="#ff9bb9" stroke-width="4" stroke-linecap="round"/>
+            <path d="M75 38 C78 26, 90 22, 98 36" fill="none" stroke="#ff9bb9" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+          <span>おなか見守りキャラ</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>ボタン説明</h2>
+        <ul class="help-list">
+          <li><strong>記録を保存</strong>: 入力した内容を今日の記録として保存します。</li>
+          <li><strong>削除</strong>: 一覧の1件だけ削除します。</li>
+          <li><strong>全データ削除</strong>: 保存済み記録をすべて削除します。</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>今日の記録</h2>
+        <form id="log-form">
+          <div class="grid">
+            <label>
+              日付
+              <input type="date" id="date" required />
+            </label>
+            <label>
+              朝食
+              <textarea id="breakfast" placeholder="例: おにぎり、味噌汁"></textarea>
+            </label>
+            <label>
+              昼食
+              <textarea id="lunch" placeholder="例: パスタ、サラダ"></textarea>
+            </label>
+            <label>
+              間食
+              <textarea id="snack" placeholder="例: ヨーグルト"></textarea>
+            </label>
+            <label>
+              夕食
+              <textarea id="dinner" placeholder="例: 焼き魚、白米"></textarea>
+            </label>
+            <label>
+              体調メモ
+              <textarea id="conditionMemo" placeholder="例: 午後に張りがある"></textarea>
+            </label>
+            <label>
+              便通回数（回）
+              <input type="number" id="bowelCount" min="0" max="20" placeholder="未入力可" />
+            </label>
+            <label>
+              尿回数（回）
+              <input type="number" id="urineCount" min="0" max="30" value="0" required />
+            </label>
+            <label>
+              便の具合
+              <select id="stoolType">
+                <option value="">未入力（便なし）</option>
+                <option value="硬め">硬め</option>
+                <option value="普通">普通</option>
+                <option value="やわらかめ">やわらかめ</option>
+                <option value="下痢気味">下痢気味</option>
+              </select>
+            </label>
+            <label>
+              腹痛の具合（0〜10）
+              <input type="number" id="painLevel" min="0" max="10" value="0" step="1" required />
+            </label>
+            <label>
+              精神的ストレス（0〜10）
+              <input type="number" id="stressLevel" min="0" max="10" value="0" step="1" required />
+            </label>
+          </div>
+          <button type="submit">記録を保存</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>分析</h2>
+        <div id="analysis" class="analysis"></div>
+      </section>
+
+      <section class="card">
+        <div class="header-row">
+          <h2>記録一覧</h2>
+          <button id="clearAll" class="danger">全データ削除</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>日付</th>
+                <th>食事（要約）</th>
+                <th>体調</th>
+                <th>便通/尿</th>
+                <th>便の具合</th>
+                <th>腹痛</th>
+                <th>ストレス</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="log-table"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <template id="row-template">
+      <tr>
+        <td class="date"></td>
+        <td class="meal"></td>
+        <td class="memo"></td>
+        <td class="counts"></td>
+        <td class="stool"></td>
+        <td class="pain"></td>
+        <td class="stress"></td>
+        <td><button class="delete">削除</button></td>
+      </tr>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

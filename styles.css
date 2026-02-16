@@ -1,0 +1,249 @@
+:root {
+  color-scheme: light;
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  line-height: 1.4;
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --text: #1f2a37;
+  --sub: #5b6678;
+  --primary: #1a73e8;
+  --danger: #d93025;
+  --border: #d8dee9;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  background: #e8f0fe;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+header p {
+  margin-top: 0.5rem;
+  color: var(--sub);
+}
+
+main {
+  max-width: 1100px;
+  margin: 1rem auto;
+  padding: 0 1rem 2rem;
+}
+
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mascot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--sub);
+  font-size: 0.8rem;
+}
+
+.mascot svg {
+  width: 92px;
+  height: 92px;
+}
+
+button,
+input,
+select,
+textarea {
+  min-height: 42px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+textarea,
+input,
+select {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.45rem 0.55rem;
+}
+
+textarea {
+  min-height: 3.5rem;
+}
+
+button {
+  margin-top: 0.8rem;
+  border: none;
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.92;
+}
+
+button.danger {
+  background: var(--danger);
+  margin-top: 0;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 0.7rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 880px;
+}
+
+th,
+td {
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  padding: 0.45rem;
+  vertical-align: top;
+}
+
+.analysis {
+  margin-top: 0.8rem;
+  color: var(--sub);
+}
+
+.analysis strong {
+  color: var(--text);
+}
+
+.help-list {
+  margin: 0.6rem 0 0;
+  padding-left: 1.2rem;
+  color: var(--sub);
+}
+
+.help-list li {
+  margin: 0.35rem 0;
+}
+
+@media (max-width: 680px) {
+  header {
+    padding: 1rem;
+  }
+
+  .hero {
+    align-items: flex-start;
+  }
+
+  .mascot svg {
+    width: 72px;
+    height: 72px;
+  }
+
+  .card {
+    border-radius: 10px;
+    padding: 0.85rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  table,
+  thead,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  thead {
+    display: none;
+  }
+
+  table {
+    min-width: 0;
+  }
+
+  tr {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.5rem;
+    margin-bottom: 0.6rem;
+    background: #fff;
+  }
+
+  td {
+    border-bottom: none;
+    padding: 0.35rem 0.2rem;
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 0.4rem;
+    align-items: start;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--sub);
+  }
+
+  td:last-child button {
+    margin-top: 0;
+    width: 100%;
+  }
+}
